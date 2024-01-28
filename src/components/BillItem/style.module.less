@@ -1,0 +1,43 @@
+.item {
+  .headerDate {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 10px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #f3f2f2;
+    align-items: center;
+    .date {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .money {
+      display: flex;
+      align-items: center;
+      > span {
+        padding: 8px;
+        font-size: 14px;
+        > span {
+          padding-left: 5px;
+        }
+      }
+      img {
+        width: 26px;
+      }
+    }
+  }
+  .bill {
+    background-color: #ffffff;
+    font-size: 20px;
+
+    .itemIcon {
+      margin: 5px 0;
+      color: #097efe;
+    }
+    .sumo {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+}

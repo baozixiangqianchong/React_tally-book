@@ -1,0 +1,123 @@
+.data {
+  background-color: #f6f6f6;
+
+  .total {
+    padding: 40px 0;
+    font-size: 20px;
+    background-color: #fff;
+
+    div {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .time {
+      background-color: #f2f2f2;
+      padding: 8px 0px;
+      border-radius: 10px;
+      font-size: 23px;
+      margin: 0 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      position: relative;
+      span:nth-of-type(1)::after {
+        content: "";
+        position: absolute;
+        top: 9px;
+        bottom: 8px;
+        right: 65px;
+        width: 1px;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .date {
+        color: #757373;
+        margin-left: 10px;
+      }
+    }
+    .title {
+      font-weight: bold;
+      color: rgb(0, 128, 255);
+    }
+    .expense {
+      font-weight: bold;
+      color: rgb(0, 128, 255);
+      align-items: center;
+      font-size: 40px;
+    }
+    .income {
+      font-weight: bold;
+      color: #8e8b8bec;
+    }
+  }
+  .structure {
+    margin-top: 30px;
+    padding: 30px 15px;
+    background-color: #fff;
+
+    .head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      .title {
+        font-size: 25px;
+        font-weight: 540;
+      }
+      .tab {
+        span {
+          font-size: 15px;
+          padding: 10px 15px;
+          margin: 5px;
+          background-color: #bbbbbb63;
+          color: black;
+          font-weight: bold;
+          border-radius: 10px;
+        }
+        .expense.active {
+          color: #077ffe;
+          background-color: #cadbee8a;
+        }
+        .income.active {
+          color: #e6b424;
+          background-color: #f9f4ed;
+        }
+      }
+    }
+    .content {
+      .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left {
+          width: 35%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .type {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            .expense {
+              background-color: #077ffe;
+              padding: 7px;
+              border-radius: 50%;
+              color: #fff;
+              margin-right: 8px;
+            }
+            .income {
+              background-color: #e6b424;
+              padding: 7px;
+              border-radius: 50%;
+              color: #fff;
+            }
+          }
+        }
+        .right {
+          width: 60%;
+        }
+      }
+    }
+  }
+}

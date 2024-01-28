@@ -1,0 +1,103 @@
+.addWrap {
+  background-color: #fff;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  .header {
+    display: flex;
+    justify-content: end;
+    .close {
+      padding: 10px;
+    }
+  }
+  .filter {
+    display: flex;
+    justify-content: space-between;
+    .type {
+      span {
+        background-color: rgb(228, 228, 228);
+        padding: 6px;
+        width: 55px;
+        text-align: center;
+        display: inline-block;
+        border-radius: 15px;
+        margin: 0 10px;
+      }
+      .expense.active {
+        color: #077ffe;
+        background-color: #cadbee8a;
+        border: 1px solid #077ffe;
+      }
+      .income.active {
+        color: #e6b424;
+        background-color: #f9f4ed;
+        border: 1px solid #e6b424;
+      }
+    }
+    .time {
+      background-color: rgb(228, 228, 228);
+      padding: 6px;
+      width: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      margin: 0 10px;
+    }
+  }
+  .money {
+    padding: 15px;
+    font-size: 40px;
+
+    .sufix {
+      margin-right: 10px;
+      font-weight: 600;
+    }
+  }
+  .typeWarp {
+    margin-bottom: 25px;
+    .typeBody {
+      display: flex;
+      overflow-x: auto;
+
+      .typeItem {
+        margin: 10px;
+        text-align: center;
+
+        .iconfontWrap {
+          background-color: rgb(228, 228, 228);
+          padding: 7px;
+          display: inline-block;
+          border-radius: 50%;
+        }
+        span {
+          margin: 5px 0;
+        }
+
+        .expense.active {
+          color: #077ffe;
+          background-color: #cadbee8a;
+          border: 1px solid #077ffe;
+        }
+        .income.active {
+          color: #e6b424;
+          background-color: #f9f4ed;
+          border: 1px solid #e6b424;
+        }
+      }
+    }
+  }
+  .remark {
+    padding: 0 24px;
+    padding-bottom: 12px;
+    color: #4b67e2;
+    :global {
+      .za-input--textarea {
+        border: 1px solid #e9e9e9;
+        padding: 10px;
+      }
+    }
+  }
+}
+* {
+  touch-action: pan-x;
+}
