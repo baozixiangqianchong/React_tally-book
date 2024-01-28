@@ -9,6 +9,8 @@ import PopupDate from "@/components/PopupDate";
 import { NotesO } from "@react-vant/icons";
 import s from "./style.module.less";
 
+let proportionChart = null; // 用于存放 echart 初始化返回的实例
+
 const Data = () => {
   const monthRef = useRef();
   const [currentMonth, setCurrentMonth] = useState(dayjs().format("YYYY-MM"));
@@ -19,9 +21,56 @@ const Data = () => {
   const [expenseData, setExpenseData] = useState([]); // 支出数据
   const [incomeData, setIncomeData] = useState([]); // 收入数据
 
+  const [pieType, setPieType] = useState("expense"); // 饼图的「收入」和「支出」控制
+
   useEffect(() => {
     getData();
+    return () => {
+      // 每次组件卸载的时候，需要释放图表实例。clear 只是将其清空不会释放。
+      if (proportionChart) {
+        proportionChart.dispose();
+      }
+    };
   }, [currentMonth]);
+
+  // 绘制饼图方法
+  const setPieChart = (data) => {
+    console.log(data, "data");
+    if (window.echarts) {
+      // 初始化饼图，返回实例。
+      proportionChart = echarts.init(document.getElementById("proportion"));
+      proportionChart.setOption({
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)",
+        },
+        // 图例
+        legend: {
+          data: data.map((item) => item.type_name),
+        },
+        series: [
+          {
+            name: "支出",
+            type: "pie",
+            radius: "55%",
+            data: data.map((item) => {
+              return {
+                value: item.number,
+                name: item.type_name,
+              };
+            }),
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: "rgba(0, 0, 0, 0.5)",
+              },
+            },
+          },
+        ],
+      });
+    }
+  };
 
   // 获取数据详情
   const getData = async () => {
@@ -40,6 +89,17 @@ const Data = () => {
       .sort((a, b) => b.number - a.number); // 过滤出账单类型为收入的项
     setExpenseData(expense_data);
     setIncomeData(income_data);
+
+    // 绘制饼图
+    setPieChart(pieType == "expense" ? expense_data : income_data);
+  };
+
+  // 切换饼图收支类型
+  const changePieType = (type) => {
+    setPieType(type);
+
+    // 重绘饼图
+    setPieChart(type == "expense" ? expenseData : incomeData);
   };
 
   // 月份弹窗开关
@@ -50,19 +110,21 @@ const Data = () => {
   const selectMonth = (item) => {
     setCurrentMonth(item);
   };
-
+  //切换进度条收支类型
+  const changeTotalType = (type) => {
+    setTotalType(type);
+  };
   return (
     <div className={s.data}>
       <div className={s.total}>
         <>
           <div className={s.time} onClick={monthShow}>
             <span>{currentMonth}</span>
-            {/* <Icon className={s.date} type="date" /> */}
             <NotesO className={s.date} />
           </div>
           <div className={s.title}>共支出</div>
-          <div className={s.expense}>¥1000</div>
-          <div className={s.income}>共收入¥200</div>
+          <div className={s.expense}>¥{totalExpense}</div>
+          <div className={s.income}>共收入¥{totalIncome}</div>
         </>
       </div>
       <div className={s.structure}>
@@ -127,6 +189,35 @@ const Data = () => {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+      <div className={s.structure}>
+        <div className={s.proportion}>
+          <div className={s.head}>
+            <span className={s.title}>收支构成</span>
+            <div className={s.tab}>
+              <span
+                onClick={() => changePieType("expense")}
+                className={cx({
+                  [s.expense]: true,
+                  [s.active]: pieType == "expense",
+                })}
+              >
+                支出
+              </span>
+              <span
+                onClick={() => changePieType("income")}
+                className={cx({
+                  [s.income]: true,
+                  [s.active]: pieType == "income",
+                })}
+              >
+                收入
+              </span>
+            </div>
+          </div>
+          {/* 这是用于放置饼图的 DOM 节点 */}
+          <div id="proportion" style={{ width: "100%", height: "300px" }}></div>
         </div>
       </div>
       <PopupDate ref={monthRef} mode="month" onSelect={selectMonth} />
