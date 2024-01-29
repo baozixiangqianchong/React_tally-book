@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get } from "@/utils";
 import { useNavigate } from "react-router-dom";
-import { Cell } from "react-vant";
+import { Cell, Button } from "react-vant";
 
 import s from "./style.module.less";
 
@@ -17,6 +17,12 @@ const User = () => {
     const { data } = await get("/api/user/get_userinfo");
     setUser(data);
     // setAvatar(data.avatar);
+  };
+
+  // 退出登录
+  const logout = async () => {
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -81,6 +87,9 @@ const User = () => {
           }
         />
       </div>
+      <Button className={s.logout} block theme="danger" onClick={logout}>
+        退出登录
+      </Button>
     </div>
   );
 };
