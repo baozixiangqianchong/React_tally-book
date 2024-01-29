@@ -14,13 +14,11 @@ axios.defaults.headers['Authorization'] = `${localStorage.getItem('token') || nu
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 axios.interceptors.request.use((config) => {
-
     return config;
 });
 
 
 axios.interceptors.response.use(res => {
-    console.log(res, "响应拦截器");
     if (typeof res.data !== 'object') {
         Toast.fail('服务端异常！')
         return Promise.reject(res)

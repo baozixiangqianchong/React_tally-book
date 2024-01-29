@@ -95,7 +95,6 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
 
   // 监听输入框改变值
   const handleMoney = (value) => {
-    console.log(value, amount);
     value = String(value);
     // 点击是删除按钮时
     if (value == "delete") {

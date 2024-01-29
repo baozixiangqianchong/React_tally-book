@@ -19,7 +19,6 @@ const Detail = () => {
 
   const navigate = useNavigate();
   const editRef = useRef();
-  console.log("location", location);
 
   useEffect(() => {
     getDetail();

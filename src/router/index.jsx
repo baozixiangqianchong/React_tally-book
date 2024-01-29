@@ -3,6 +3,7 @@ import Home from "@/container/Home";
 import Data from "@/container/Data";
 import User from "@/container/User";
 import Detail from "../container/Detail";
+import UserInfo from "../container/UserInfo";
 const routes = [
   {
     path: "/",
@@ -23,6 +24,10 @@ const routes = [
   {
     path: "/detail",
     component: Detail,
+  },
+  {
+    path: "/userinfo",
+    component: UserInfo,
   },
 ];
 
