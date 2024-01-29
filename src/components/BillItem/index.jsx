@@ -36,8 +36,6 @@ const BillItem = ({ bill }) => {
 
   // 前往账单详情
   const goToDetail = (item) => {
-    console.log(item, "前往账单详情");
-    console.log(history);
     history(`/detail?id=${item.id}`);
   };
 

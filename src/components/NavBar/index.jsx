@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Tabbar } from "react-vant";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CustomIcon from "../CustomIcon";
 import s from "./style.module.less";
 
 const NavBar = ({ showNav }) => {
   const [activeKey, setActiveKey] = useState("/");
+  const location = useLocation(); // 获取当前路由信息
   const navigate = useNavigate();
+
   const chnageTab = (path) => {
     setActiveKey(path);
     navigate(path);
   };
+  // 监听路由变化
+  useEffect(() => {
+    setActiveKey(location.pathname);
+  }, [location.pathname]);
 
   return showNav ? (
     <Tabbar
