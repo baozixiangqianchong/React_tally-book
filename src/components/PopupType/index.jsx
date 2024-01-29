@@ -20,7 +20,6 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
         const {
           data: { list },
         } = await get("/api/type/list");
-        console.log(list, "list");
         setExpense(list.filter((i) => i.type === 1));
         setIncome(list.filter((i) => i.type === 2));
       } catch (error) {
@@ -44,7 +43,6 @@ const PopupType = forwardRef(({ onSelect }, ref) => {
   }
   // 选择类型回调
   const choseType = (item) => {
-    console.log(item, "选中类型");
     setActive(item.id);
     setShow(false);
     // 父组件传入的 onSelect，为了获取类型

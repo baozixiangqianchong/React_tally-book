@@ -1,0 +1,35 @@
+.user {
+  position: relative;
+  .head {
+    background-color: rgb(102, 149, 236);
+    padding: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 60px;
+    .info {
+      span {
+        display: block;
+        color: #fff;
+        font-size: 18px;
+        margin: 10px;
+      }
+    }
+    // .avatar {
+    // }
+  }
+  .content {
+    width: 90%;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 3px 2px 20px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    > div {
+      padding: 12px;
+      border-bottom: 1px #6666666c solid;
+    }
+  }
+}

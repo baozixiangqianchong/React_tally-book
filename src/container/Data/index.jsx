@@ -35,7 +35,6 @@ const Data = () => {
 
   // 绘制饼图方法
   const setPieChart = (data) => {
-    console.log(data, "data");
     if (window.echarts) {
       // 初始化饼图，返回实例。
       proportionChart = echarts.init(document.getElementById("proportion"));

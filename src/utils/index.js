@@ -2,6 +2,17 @@ import axios from "./axios.js";
 export const get = axios.get
 export const post = axios.post
 
+import { baseUrl } from 'config'
+const MODE = import.meta.env.MODE // 环境变量
+export const imgUrlTrans = (url) => {
+    if (url && url.startsWith('http')) {
+        return url
+    } else {
+        url = `${MODE == 'development' ? 'http://110.40.173.100:7009' : baseUrl}${url}`
+        return url
+    }
+}
+
 export const typeMap = {
     1: {
         icon: 'canyin'
