@@ -42,24 +42,7 @@ const PopupAddBill = forwardRef(({ detail = {}, onReload }, ref) => {
       const {
         data: { list },
       } = await get("/api/type/list");
-      list.push(
-        { id: 1, name: "体育", type: 1, user_id: 1 },
-        { id: 2, name: "学习", type: 1, user_id: 2 },
-        { id: 3, name: "吃饭", type: 1, user_id: 3 },
-        { id: 4, name: "饮料", type: 1, user_id: 4 },
-        { id: 5, name: "交通", type: 1, user_id: 5 },
-        { id: 6, name: "衣物", type: 1, user_id: 6 },
-        { id: 7, name: "房租", type: 1, user_id: 7 },
-        { id: 8, name: "其他", type: 1, user_id: 8 },
-        { id: 9, name: "体育", type: 2, user_id: 1 },
-        { id: 16, name: "学习", type: 2, user_id: 2 },
-        { id: 11, name: "吃饭", type: 2, user_id: 3 },
-        { id: 10, name: "饮料", type: 2, user_id: 4 },
-        { id: 12, name: "交通", type: 2, user_id: 5 },
-        { id: 13, name: "衣物", type: 2, user_id: 6 },
-        { id: 14, name: "房租", type: 2, user_id: 7 },
-        { id: 15, name: "其他", type: 2, user_id: 8 }
-      );
+
       const _expense = list.filter((i) => i.type == 1); // 支出类型
       const _income = list.filter((i) => i.type == 2); // 收入类型
       setExpense(_expense);
